@@ -58,9 +58,15 @@
     font-size: 20px;
 }
 
+.active
+{
+    color: #fe2427;
+}
+
 #results
 {
     margin-top: 85px;
+    margin-bottom: 85px;
     text-align: right;
     direction: rtl;
     font-weight: bold;
@@ -101,10 +107,21 @@
     border-bottom: silver 1px solid;
 }
 
+#results .media-body > a:nth-child(3)
+{
+    font-size: 13px;
+}
+
+#results .media-body > div.row > div:nth-child(1)
+{
+    font-size: 12px;
+}
+
 #results .media-body > div.row > div:nth-child(2)
 {
     color: silver;
     text-align: center;
+    font-size: 13px;
 }
 
 

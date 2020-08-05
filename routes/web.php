@@ -13,5 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','userController@index');
-
+Route::get('/','eventController@index');
+Route::get('/events/search','EventController@store' );

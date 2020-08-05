@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\category;
 use App\event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -14,9 +16,13 @@ class EventController extends Controller
      */
     public function index()
     {
-        $data=event::get();
-        dd($data);
-        return view('welcome',compact('data'));
+        $data=event::join('categories','events.category_id','=','categories.id')
+                    ->join('cities','events.city_id','=','cities.id')
+                    ->select('categories.*','events.*','cities.*','categories.id as categories_id_table','events.id as events_id_table','cities.id as cities_id_table')
+                    ->orderby('events.id','desc')
+                    ->get();
+        $categories=category::get();
+        return view('welcome',compact('data','categories'));
     }
 
     /**
@@ -37,7 +43,34 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if($request->cat==1)
+        {
+            $data=event::join('categories','events.category_id','=','categories.id')
+                        ->join('cities','events.city_id','=','cities.id')
+                        ->select('categories.*','events.*','cities.*','categories.id as categories_id_table','events.id as events_id_table','cities.id as cities_id_table')
+                        ->where([
+                            ['events.event','like','%'.$request->event.'%'],
+                            ])
+                        ->orderby('events.id','desc')
+                        ->get();
+        }
+        else
+        {
+            $data=event::join('categories','events.category_id','=','categories.id')
+                        ->join('cities','events.city_id','=','cities.id')
+                        ->select('categories.*','events.*','cities.*','categories.id as categories_id_table','events.id as events_id_table','cities.id as cities_id_table')
+                        ->where([
+                            ['events.event','like','%'.$request->event.'%'],
+                            ['events.category_id','=',$request->cat]
+                            ])
+                        ->orderby('events.id','desc')
+                        ->get();
+        }
+
+
+        $categories=category::get();
+        return view('welcome',compact('data','categories'));
     }
 
     /**
@@ -48,7 +81,7 @@ class EventController extends Controller
      */
     public function show(event $event)
     {
-        //
+
     }
 
     /**

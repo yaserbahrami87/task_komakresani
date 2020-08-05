@@ -4,7 +4,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <link href="{{asset('fonts/fontawesome/css/all.css')}}" rel="stylesheet" />
@@ -22,7 +21,9 @@
                         </svg>
                     </div>
                     <div class="col-4 text-center">
-                        <img src="img/logo.png"  />
+                        <a href="/">
+                            <img src="{{asset('/img/logo.png')}}"  />
+                        </a>
                     </div>
                     <div class="col-4 ">
                         <span>رویداد</span>
@@ -51,19 +52,19 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="" method="GET">
+                    <form action="\events\search" method="GET" >
+                        {{csrf_field()}}
                         <div class="modal-body">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="event" placeholder="نام رویداد ...">
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" name="cat" >
-                                        <option>همه دسته بندی ها</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        @if ($categories->count()>0)
+                                            @foreach ($categories as $cat)
+                                                 <option value="{{$cat->id}}">{{$cat->category}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
 
@@ -94,7 +95,7 @@
                         </svg>
                         <p>جستجو</p>
                     </a>
-                    <a class="col text-center" href="">
+                    <a class="col text-center active" href="">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M14 2H2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM2 1a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                             <path fill-rule="evenodd" d="M14 2H2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1zM2 1a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2H2z"/>
@@ -127,42 +128,28 @@
             </nav>
         </div>
         <div class="row" id="results">
-            <article class="col-12">
-                <div class="media">
-                    <img src="img/item.jpg">
-                    <div class="media-body">
-                      <a href="#">رویداد 3 - دمو طلایی</a>
-                      <p>از 1398/7/7 تا 1400/7/7</p>
-                      <a href="">مشهد</a>
-                      <div class="row">
-                            <div class="col-6">
-                                <a href="">غذا و رستوران</a>
+            @if($data->count()>0)
+                @foreach ($data as $item)
+                    <article class="col-12">
+                        <div class="media">
+                            <img src=" {{$item->img}}">
+                            <div class="media-body">
+                            <a href="#">{{$item->event}}</a>
+                            <p>از {{$item->startdate}} تا {{$item->expiredate}}</p>
+                            <a href="">{{$item->city}}</a>
+                            <div class="row">
+                                    <div class="col-7">
+                                        <a href="">{{$item->category}}</a>
+                                    </div>
+                                    <div class="col-5">
+                                        <p> {{$item->likes}} علاقمند</p>
+                                    </div>
                             </div>
-                            <div class="col-6">
-                                <p> 6 علاقمند</p>
                             </div>
-                      </div>
-                    </div>
-                </div>
-            </article>
-            <article class="col-12">
-                <div class="media">
-                    <img src="img/item.jpg">
-                    <div class="media-body">
-                      <a href="#">رویداد 3 - دمو طلایی</a>
-                      <p>از 1398/7/7 تا 1400/7/7</p>
-                      <a href="">مشهد</a>
-                      <div class="row">
-                            <div class="col-6">
-                                <a href="">غذا و رستوران</a>
-                            </div>
-                            <div class="col-6">
-                                <p> 6 علاقمند</p>
-                            </div>
-                      </div>
-                    </div>
-                </div>
-            </article>
+                        </div>
+                    </article>
+                @endforeach
+            @endif
         </div>
     </main>
 
