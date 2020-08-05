@@ -1,0 +1,163 @@
+@font-face
+{
+    font-family: 'byekan';
+    src:url('../fonts/BYekan.eot') format('eot');
+    src: url('../fonts/BYekan.woff') format('woff');
+    font-weight: normal;
+}
+
+*
+{
+    font-family: 'byekan';
+}
+
+#navbar_top
+{
+    background-color: #fe2427 !important;
+    color: #ffffff;
+}
+
+#navbar_top > .row:nth-child(2)
+{
+    margin-top: 10px;
+}
+
+#navbar_top img
+{
+    width: 100px;
+}
+
+#navbar_top input
+{
+    background-image: url('../img/search.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 40px;
+    outline: none;
+    border: none;
+}
+#navbar_top input::placeholder
+{
+    text-align:right;
+    color: silver;
+}
+
+#navbar_top > .row:nth-child(1) > div:nth-child(3)
+{
+    text-align: right;
+}
+#navbar_bottom
+{
+    font-size: 12px;
+    border-top: 1px solid #ccc;
+}
+
+#navbar_bottom svg
+{
+    font-size: 20px;
+}
+
+#results
+{
+    margin-top: 85px;
+    text-align: right;
+    direction: rtl;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#results > article
+{
+    border-bottom: 1px solid #ccc;
+}
+
+#results .media
+{
+    padding-top: 10px;
+}
+
+#results img
+{
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+#results p
+{
+    margin:0px;
+    margin-bottom: 7px;
+}
+
+#results .media a
+{
+    display: block;
+}
+
+#results > div
+{
+    border-bottom: silver 1px solid;
+}
+
+#results .media-body > div.row > div:nth-child(2)
+{
+    color: silver;
+    text-align: center;
+}
+
+
+.modal button.close
+{
+    margin: 0px;
+    padding: 0px;
+    margin-right: 20px;
+    margin-top: -24px;
+    margin-bottom: 15px;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0px 1px 5px;
+    border-radius: 5px;
+}
+
+.modal button.close:focus
+{
+    border: none;
+    outline: none;
+}
+
+.modal-content
+{
+    background-color:  #f2f2f2;
+}
+
+.modal-header
+{
+    padding:0px;
+    padding-top: 15px;
+    border-bottom: none;
+}
+
+.modal-body
+{
+    padding:0px 1rem;
+    direction: rtl;
+}
+
+.modal-body .form-group
+{
+    margin-bottom: 0.25rem;
+}
+.modal-footer
+{
+    border-top: 0px;
+}
+
+.modal-footer button
+{
+    background-color:#fe2427;
+    outline: none;
+    border: none;
+    color: #ffffff;
+}
